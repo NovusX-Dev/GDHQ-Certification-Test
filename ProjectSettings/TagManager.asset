@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Projectile
+  - Shredder
+  - Projectile Parent
+  - Enemies Parent
+  - Playable Area
+  - PW - Prop
+  - Player_Timeline
+  - Ground_Turret
+  - Player_Rig
+  - Sun
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Enemies
+  - Water
+  - UI
+  - Player Shredder
+  - Player
+  - Playable Layer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
