@@ -23,10 +23,12 @@ public class Pickup : MonoBehaviour
             if (_type == PickupType.Upgrade)
             {
                 other.GetComponent<PlayerLevelManager>().UpgradeLevel(1);
+                other.GetComponent<PlayerHealth>().ActivateUpgradeVFX();
             }
             else if (_type == PickupType.Health)
             {
                 other.GetComponent<PlayerHealth>().HealPlayer(1);
+                other.GetComponent<PlayerHealth>().ActivateUpgradeVFX();
             }
 
             AudioManager.Instance.PlayMultiSFX(_audioClips);

@@ -5504,7 +5504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5615289144453050461, guid: 2c300ad0aba46294ba95d5b737acd37a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5615289144453050461, guid: 2c300ad0aba46294ba95d5b737acd37a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5580,7 +5580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5615289144721258197, guid: 2c300ad0aba46294ba95d5b737acd37a, type: 3}
       propertyPath: m_MaxValue
-      value: -25
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 5615289144721258197, guid: 2c300ad0aba46294ba95d5b737acd37a, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

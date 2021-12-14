@@ -59,8 +59,8 @@ public class CameraShaker : MonoBehaviour
     {
         _multichaneelPerling.m_AmplitudeGain = _strongShakeIntensity;
 
-        _shakeTimer = _strongShakeTimer;
-        _shakeTimer = _strongShakeTimer;
+        _shakeTimer = _strongShakeTimer * 2;
+        _shakeTimer = _strongShakeTimer * 2;
         _newShakeIntensity = _strongShakeIntensity;
     }
 }

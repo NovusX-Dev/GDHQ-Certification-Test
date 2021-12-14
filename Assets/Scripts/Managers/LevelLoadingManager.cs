@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoadingManager : Singleton<LevelLoadingManager>
 {
+    private void Start()
+    {
+        AudioManager.Instance.SetMusicVolume(-15f);
+    }
 
     public void LoadNextLevel(string levelName)
     {

@@ -14,9 +14,11 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("References")]
     [SerializeField] GameObject _explosionVFX;
+    [SerializeField] GameObject _upgradeVFX;
 
     private float _currentHealth;
     private int _currentRespawnLives;
+    private WaitForSeconds _upgradeVFXYield;
 
     ColorBlinker _blinker;
 
@@ -30,16 +32,17 @@ public class PlayerHealth : MonoBehaviour
         switch (GameManager.Instance.CurrentDifficulty)
         {
             case 0:
-                _maxHealth = 12;
+                _currentHealth = _maxHealth * 2;
+                _currentRespawnLives = _maxRespawnLives * 2;
                 break;
             case 1:
-                _maxHealth = 6;
+                _currentHealth = _maxHealth;
+                _currentRespawnLives = _maxRespawnLives;
                 break;
         }
 
-        _currentHealth = _maxHealth;
-        _currentRespawnLives = _maxRespawnLives;
         OnPlayerDamagedInt?.Invoke(_currentHealth);
+        _upgradeVFXYield = new WaitForSeconds(2f);
     }
 
     void Update()
@@ -80,6 +83,18 @@ public class PlayerHealth : MonoBehaviour
         }
 
         OnPlayerDamagedInt?.Invoke(_currentHealth);
+    }
+
+    public void ActivateUpgradeVFX()
+    {
+        StartCoroutine(ActivateUpgradeVFXRoutine());
+    }
+
+    IEnumerator ActivateUpgradeVFXRoutine()
+    {
+        _upgradeVFX.SetActive(true);
+        yield return _upgradeVFXYield;
+        _upgradeVFX.SetActive(false);
     }
 
     private void Death()

@@ -18,6 +18,7 @@ public class Leopard : MonoBehaviour
     [Header("Death")]
     [SerializeField] GameObject _smallExplosionVFX;
     [SerializeField] GameObject _bigExplosionVFX;
+    [SerializeField] AudioClip _winSFX;
     [SerializeField] Transform _explosionPosition;
     [SerializeField] int _killScore = 25000;
     [SerializeField] int _comboScore = 5;
@@ -108,6 +109,7 @@ public class Leopard : MonoBehaviour
 
     public IEnumerator Death()
     {
+        AudioManager.Instance.PlayMusic(_winSFX);
         yield return new WaitForSeconds(3f);
         _smallExplosionVFX.SetActive(true);
 

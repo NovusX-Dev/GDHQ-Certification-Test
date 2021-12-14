@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f77d5ff8f9f9f4e80d11470fc13043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 0.15
+  _damageRate: 0.5
+  _beamSpawnRateRange: {x: 1, y: 3}
+  _beamContainer: {fileID: 0}
   beamLineRendererPrefab: {fileID: 122126, guid: 23a9a4e8bfb2529449ad08afe2480d4c, type: 3}
   beamStartPrefab: {fileID: 167732, guid: ac09d431752fbff4d91bbbde6bc6645e, type: 3}
   beamEndPrefab: {fileID: 193750, guid: 67542617bb19e074eb7ea46b7d0c36b1, type: 3}

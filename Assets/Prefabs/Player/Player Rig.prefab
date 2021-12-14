@@ -782,6 +782,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 668294405092251618}
     m_Modifications:
+    - target: {fileID: 836105195, guid: 694351dd4a7bdc842b8f2aca7b4c59dc, type: 3}
+      propertyPath: _fireRateMultiplier
+      value: 0.81
+      objectReference: {fileID: 0}
     - target: {fileID: 836105197, guid: 694351dd4a7bdc842b8f2aca7b4c59dc, type: 3}
       propertyPath: _maxHealth
       value: 6
@@ -789,6 +793,10 @@ PrefabInstance:
     - target: {fileID: 2429638460616187986, guid: 694351dd4a7bdc842b8f2aca7b4c59dc, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429638460616187987, guid: 694351dd4a7bdc842b8f2aca7b4c59dc, type: 3}
+      propertyPath: _minFireRate
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 2429638460616187987, guid: 694351dd4a7bdc842b8f2aca7b4c59dc, type: 3}
       propertyPath: _projectileParent
