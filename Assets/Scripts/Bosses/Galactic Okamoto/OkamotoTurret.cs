@@ -11,15 +11,15 @@ public class OkamotoTurret : MonoBehaviour
 
     private bool _isActive = false;
     private bool _isDestroyed = false;
+    private bool _canRotate = true;
     private Vector3 _targetDir;
     private Vector3 _currentDir;
     private Quaternion _quaternionDir;
+    private float _nextFire;
+    private int _bossId;
     private GameObject _bulletPrefab;
     private Transform _projectileParent;
-    private float _nextFire;
     private PlayerHealth _player;
-    private bool _canRotate = true;
-    private int _bossId;
 
     Okamoto _okmato;
 
@@ -32,11 +32,13 @@ public class OkamotoTurret : MonoBehaviour
     private void OnEnable()
     {
         BossTrigger.OnPlayerNearBoss += ActivateTurret;
+        PlayerHealth.OnPlayerDeath += PlayerisDead;
     }
 
     private void OnDisable()
     {
         BossTrigger.OnPlayerNearBoss -= ActivateTurret;
+        PlayerHealth.OnPlayerDeath -= PlayerisDead;
     }
 
     private void Start()
@@ -48,7 +50,7 @@ public class OkamotoTurret : MonoBehaviour
 
     private void Update()
     {
-        if(_isDestroyed || !_isActive) return;
+        if(_isDestroyed || !_isActive || _player == null) return;
 
         if (_canRotate)
         {
@@ -59,6 +61,7 @@ public class OkamotoTurret : MonoBehaviour
         {
             FireCannons();
         }
+
     }
 
     private void FireCannons()
@@ -89,6 +92,11 @@ public class OkamotoTurret : MonoBehaviour
         _isDestroyed = true;
         Instantiate(_explosionVFX, transform.position, Quaternion.identity);;
         gameObject.SetActive(true);
+    }
+
+    private void PlayerisDead()
+    {
+        _player = null;
     }
 
     private void ActivateTurret(bool active, int id)

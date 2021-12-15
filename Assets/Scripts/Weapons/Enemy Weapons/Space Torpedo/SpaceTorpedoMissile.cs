@@ -18,6 +18,16 @@ public class SpaceTorpedoMissile : MonoBehaviour
 
     PlayerHealth _player;
 
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += PlayerIsDead;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= PlayerIsDead;
+    }
+
     private void Start()
     {
         _offsetLuanchPosition = transform.position + _launchPosition;
@@ -72,6 +82,11 @@ public class SpaceTorpedoMissile : MonoBehaviour
         _playerTransformOffset = new Vector3(_player.transform.position.x + Random.Range(_targetRange.x, _targetRange.y),
                    0f, _player.transform.position.z + Random.Range(_targetRange.x, _targetRange.y));
         _isTargeting = true;
+    }
+
+    private void PlayerIsDead()
+    {
+        DestroyMissile();
     }
 
 }

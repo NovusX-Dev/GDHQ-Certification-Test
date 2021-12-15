@@ -34,21 +34,30 @@ public class PlayerTimelineManager : MonoBehaviour
         _screenShotTime = _playerTimeline.time;
     }
 
-    public void ResumeTimeline()
+    public void ResumeTimeline(float waitTime)
     {
-        StartCoroutine(ResumeRoutine());
+        StartCoroutine(ResumeRoutine(waitTime));
     }
 
-    public void ResumeOnScreenShotTime()
+    public void ResumeOnScreenShotTime(float waitTime)
     {
         _playerTimeline.time = _screenShotTime;
-        StartCoroutine(ResumeRoutine());
+        StartCoroutine(ResumeRoutine(waitTime));
     }
 
-    IEnumerator ResumeRoutine()
+    IEnumerator ResumeRoutine(float waitTime)
     {
-        yield return new WaitForSeconds(3f);
-        _playerTimeline.Play();
+        if(waitTime > 0)
+        {
+            yield return new WaitForSeconds(waitTime);
+            _playerTimeline.Play();
+        }
+        else
+        {
+            yield return null;
+            _playerTimeline.Play();
+        }
+        
     }
 
     private void PauseTimeline(bool wait, int waitTime)

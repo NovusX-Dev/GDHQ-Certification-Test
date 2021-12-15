@@ -10,14 +10,27 @@ public class LeopardMisslleLauncher : MonoBehaviour
     private bool _isActive = true;
     private float _nextFire;
 
+    PlayerHealth _player;
+
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += PlayerIsDead;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= PlayerIsDead;
+    }
+
     private void Start()
     {
         _nextFire = Time.time + 10f;
+        _player = FindObjectOfType<PlayerHealth>();
     }
 
     private void Update()
     {
-        if(!_isActive) return;
+        if(!_isActive || _player == null) return;
 
         if(Time.time > _nextFire)
         {
@@ -29,5 +42,10 @@ public class LeopardMisslleLauncher : MonoBehaviour
     public bool EnableMissileLaunchers(bool active)
     {
         return _isActive = active;
+    }
+
+    private void PlayerIsDead()
+    {
+        _player = null;
     }
 }

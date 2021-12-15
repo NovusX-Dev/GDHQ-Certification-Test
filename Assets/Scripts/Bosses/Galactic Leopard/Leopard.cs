@@ -26,15 +26,27 @@ public class Leopard : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject _bulletLaserPrefab;
     [SerializeField] LeopardHealthPart[] _healthParts;
-    [SerializeField] ObjectDestroyer[] _stage1Parts;
+    [SerializeField] GameObject _stage1Parent;
+    [SerializeField] GameObject[] _stage1Parts;
     [SerializeField] LeopardHealthPart[] _stage2Parts;
 
     private float _currentTotalHealth;
+    private float _startingTotalHealth;
     Animator _animator;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += PlayerIsDead;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= PlayerIsDead;
     }
 
     private void Start()
@@ -43,6 +55,7 @@ public class Leopard : MonoBehaviour
         {
             _currentTotalHealth += _healthParts[i].MaxHealth;
         }
+        _startingTotalHealth = _currentTotalHealth;
     }
 
     public void CalculatLeopardTotalHealth(float amount)
@@ -70,8 +83,11 @@ public class Leopard : MonoBehaviour
     {
         foreach (var part in _stage1Parts)
         {
-            part.enabled = true;
+            //part.SetActive(false);
+            Instantiate(_smallExplosionVFX, part.transform.position, Quaternion.identity);
         }
+
+        _stage1Parent.SetActive(false);
     }
 
     public void StartStage2()
@@ -107,6 +123,27 @@ public class Leopard : MonoBehaviour
             return null;
     }
 
+    private void ResetBoss()
+    {
+        _animator.SetTrigger("reset");
+        _stage1Parent.SetActive(false);
+        _currentTotalHealth = _startingTotalHealth;
+        foreach (var part in _stage1Parts)
+        {
+            if(part.GetComponent<LeopardHealthPart>() != null)
+            {
+                part.GetComponent<LeopardHealthPart>().ResetHealthPart();
+            }
+        }
+    }
+
+    private void PlayerIsDead()
+    {
+        FindObjectOfType<StarGaurdian>().ResetStar();
+        Destroy(gameObject, 3f);
+        //gameObject.SetActive(false);
+    }
+
     public IEnumerator Death()
     {
         AudioManager.Instance.PlayMusic(_winSFX);
@@ -117,7 +154,7 @@ public class Leopard : MonoBehaviour
         Instantiate(_bigExplosionVFX, _explosionPosition.position, Quaternion.identity);
         ScoreManager.Instance.IncreaseKillScore(_killScore);
         ScoreManager.Instance.IncreaseCombo(_comboScore);
-        GameObject.FindGameObjectWithTag("Player_Timeline").GetComponent<PlayerTimelineManager>().ResumeTimeline();
+        GameObject.FindGameObjectWithTag("Player_Timeline").GetComponent<PlayerTimelineManager>().ResumeTimeline(3);
         Destroy(gameObject);
     }
 }

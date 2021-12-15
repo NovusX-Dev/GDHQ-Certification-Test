@@ -38,13 +38,16 @@ public class UIManager : Singleton<UIManager>
 
     private float _playerMaxHealth;
     private string _nextLevelToLoad;
+    private LevelCheckpointManager[] _levelCheckpoints = null;
+    private bool _canRespawn;
 
     Light _mainLight;
+    Fader _fader;
 
     private void OnEnable()
     {
         PlayerHealth.OnPlayerDamagedInt += UpdateHealthUI;
-        PlayerHealth.OnPlayerDeath += ActivateDeathPanel;
+        PlayerHealth.OnPlayerDeathRespawnCheck += ActivateDeathPanel;
         PlayerLevelManager.OnPlayerLevelUp += UpdateRankIcons;
         LevelEndTrigger.OnLevelEnded += ActivateLevelEndPanel;
     }
@@ -52,22 +55,30 @@ public class UIManager : Singleton<UIManager>
     private void OnDisable()
     {
         PlayerHealth.OnPlayerDamagedInt -= UpdateHealthUI;
-        PlayerHealth.OnPlayerDeath -= ActivateDeathPanel;
+        PlayerHealth.OnPlayerDeathRespawnCheck -= ActivateDeathPanel;
         PlayerLevelManager.OnPlayerLevelUp -= UpdateRankIcons;
         LevelEndTrigger.OnLevelEnded -= ActivateLevelEndPanel;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _fader = GetComponentInChildren<Fader>();
     }
 
     void Start()
     {
         _comboText.gameObject.SetActive(false);
         var player = FindObjectOfType<PlayerHealth>();
-        if (player != null) _playerMaxHealth = player.GetMaxHealth();
+        if (player != null) _playerMaxHealth = player.GetDifficultyMaxHealth();
 
         UpdateRankIcons(1);
 
         _mainLight = GameObject.FindGameObjectWithTag("Sun").GetComponentInChildren<Light>();
         _mainLight.intensity = LoadingData._gameBrightness;
-        
+        _levelCheckpoints = FindObjectsOfType<LevelCheckpointManager>();
+
+        StartCoroutine(_fader.FadeIn(1f));
     }
 
     private void Update()
@@ -81,6 +92,11 @@ public class UIManager : Singleton<UIManager>
     public void DialogBoxActivation(string dialog)
     {
         _dialogText.text = dialog;
+    }
+
+    public void UIFadeIN(float time)
+    {
+        StartCoroutine(_fader.FadeIn(time));
     }
 
     #region Update Stats
@@ -151,12 +167,29 @@ public class UIManager : Singleton<UIManager>
 
     #region Death Panel
 
+    private void CanPlayerRespawn()
+    {
+        foreach (var point in _levelCheckpoints)
+        {
+            if(!point.CanRespawn)
+            {
+                _canRespawn = false;
+            }
+            else
+            {
+                _canRespawn = true;
+                break;
+            }
+        }
+    }
+
     public void ActivateDeathPanel(int respawnLives)
     {
+        CanPlayerRespawn();
         _playerDeathPanel.SetActive(true);
         _deathTotalScoreText.text = $"Total Score: {ScoreManager.Instance.GetTotalScore()}";
         _respawnLivesText.text = $"Respawn Lives Remaining: {respawnLives}";
-        if (respawnLives > 0 && _levelCheckpointManager.CanRespawn)
+        if (respawnLives > 0 && _canRespawn)
         {
             _respawnButton.SetActive(true);
         }
@@ -164,6 +197,7 @@ public class UIManager : Singleton<UIManager>
         {
             _deathRestartLevelButton.SetActive(true);
         }
+
     }
 
     public void DeactivateDeathPanel()
@@ -192,28 +226,52 @@ public class UIManager : Singleton<UIManager>
 
     public void RespawnButton()
     {
+        StartCoroutine(RespawnRoutine());
+    }
+
+    IEnumerator RespawnRoutine()
+    {
         AudioManager.Instance.PlayMultiSFX(_buttonSFXs);
+        yield  return _fader.FadeOut(1f);
         GameManager.Instance.RespawnPlayer();
     }
 
     public void RestartLevelButton()
     {
+        StartCoroutine(RestartRoutine());
+    }
+
+    IEnumerator RestartRoutine()
+    {
         AudioManager.Instance.PlayMultiSFX(_buttonSFXs);
         Time.timeScale = 1f;
+        yield return _fader.FadeOut(1f);
         LevelLoadingManager.Instance.RestartLevel();
     }
 
     public void LoadNextLevel()
     {
+        StartCoroutine(LoadNextLevelRoutine());
+    }
+
+    IEnumerator LoadNextLevelRoutine()
+    {
         AudioManager.Instance.PlayMultiSFX(_buttonSFXs);
         Time.timeScale = 1f;
+        yield return _fader.FadeOut(1f);
         LevelLoadingManager.Instance.LoadNextLevel(_nextLevelToLoad);
     }
 
     public void MainMenuButton(int index)
     {
+        StartCoroutine(MainMenuRoutine());
+    }
+
+    IEnumerator MainMenuRoutine()
+    {
         AudioManager.Instance.PlayMultiSFX(_buttonSFXs);
         Time.timeScale = 1f;
+        yield return _fader.FadeOut(1f);
         LevelLoadingManager.Instance.LoadNextLevel("Main Menu");
     }
 

@@ -26,6 +26,12 @@ public class LeopardTurret : MonoBehaviour
     {
         _originalRot = transform.rotation;
         StartCoroutine(ActivateTurretsRoutine(true));
+        PlayerHealth.OnPlayerDeath += PlayerIsDead;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= PlayerIsDead;
     }
 
     private void Start()
@@ -101,8 +107,13 @@ public class LeopardTurret : MonoBehaviour
         _nextFire = Time.time + 1f;
     }
 
-    public void DeactivateTurrets()
+    private void PlayerIsDead()
     {
-        _isActive = false;
+        _player = null;
+    }
+
+    public void ActivateTurret(bool active)
+    {
+        _isActive = active;
     }
 }

@@ -23,17 +23,21 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         _currentDifficulty = LoadingData.difficultyIndex;
+        Debug.Log("Current Difficulty = " + _currentDifficulty);
+        Debug.Log("Loading Difficulty = " + LoadingData.difficultyIndex);
     }
 
     public void RespawnPlayer()
     {
-        _playerRig.position = _levelCheckPoint.RespawnPos;
+        UIManager.Instance.UIFadeIN(3f);
+        _playerTimeline.ResumeOnScreenShotTime(1);
         Time.timeScale = 1;
         UIManager.Instance.DeactivateDeathPanel();
         if (_player != null)
         {
             _player.RespawnPlayer();
+            _playerRig.position = _levelCheckPoint.RespawnPos;
         }
-        _playerTimeline.ResumeOnScreenShotTime();
+
     }
 }

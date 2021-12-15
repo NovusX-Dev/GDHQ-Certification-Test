@@ -18,12 +18,8 @@ public class LeopardHealthPart : MonoBehaviour
     [SerializeField] LeopardMisslleLauncher[] _missileLaunchers;
     [SerializeField] LeopardTurret[] _turrets;
 
-    [Header("Next Health Parts")]
-    [SerializeField] LeopardHealthPart[] _nextHealthParts;
-
     private float _currentHealth;
     private bool _pickupSpawned;
-    private bool _isDamaged = false;
     private WaitForSeconds _damagedTimer;
 
     public float MaxHealth => _maxHealth;
@@ -66,14 +62,14 @@ public class LeopardHealthPart : MonoBehaviour
 
         if (_currentHealth < 0)
         {
-            ActivateLaunchers(false);
             _isInvicible = true;
-            if(_turrets != null)
+            foreach (var missile in _missileLaunchers)
             {
-                foreach(var turret in _turrets)
-                {
-                    turret.DeactivateTurrets();
-                }
+                if(missile != null) missile.gameObject.SetActive(false);
+            }
+            foreach(var turret in _turrets)
+            {
+                if(turret != null) turret.gameObject.SetActive(false);
             }
         }
     }
@@ -125,6 +121,19 @@ public class LeopardHealthPart : MonoBehaviour
         {
             DamagePart(other.GetComponent<BulletLaserBase>().GetBulletDamage());
             Destroy(other.gameObject);
+        }
+    }
+
+    public void ResetHealthPart()
+    {
+        ActivateLaunchers(true);
+        _isInvicible = false;
+        if (_turrets != null)
+        {
+            foreach (var turret in _turrets)
+            {
+                turret.ActivateTurret(true);
+            }
         }
     }
 }

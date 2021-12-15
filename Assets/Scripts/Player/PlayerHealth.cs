@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static event Action<float> OnPlayerDamagedInt;
     public static event Action OnPlayerReceivedDamage;
-    public static event Action<int> OnPlayerDeath;
+    public static event Action OnPlayerDeath;
+    public static event Action<int> OnPlayerDeathRespawnCheck;
 
     [SerializeField] float _maxHealth = 6;
     [SerializeField] int _maxRespawnLives = 1;
@@ -100,10 +101,12 @@ public class PlayerHealth : MonoBehaviour
     private void Death()
     {
         OnPlayerDamagedInt?.Invoke(_currentHealth);
+        OnPlayerDeath?.Invoke();
+        OnPlayerDeathRespawnCheck?.Invoke(_currentRespawnLives);
+
         FindObjectOfType<PlayerTimelineManager>().PauseTimeline();
         _currentHealth = 0;
         Instantiate(_explosionVFX, transform.position, Quaternion.identity);
-        OnPlayerDeath?.Invoke(_currentRespawnLives);
         gameObject.SetActive(false);
     }
 
@@ -128,6 +131,11 @@ public class PlayerHealth : MonoBehaviour
     public float GetMaxHealth()
     {
         return _maxHealth;
+    }
+
+    public float GetDifficultyMaxHealth()
+    {
+        return _currentHealth;
     }
 
 

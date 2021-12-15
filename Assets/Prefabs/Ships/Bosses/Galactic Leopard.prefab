@@ -325,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1060550758620058541
 Transform:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ MonoBehaviour:
   - {fileID: 6032375817786717454}
   _smallExplosionVFX: {fileID: 5846604154946487796}
   _bigExplosionVFX: {fileID: 1709771901735416768, guid: b3595dc2ec1222f4981b0c90decd81ef, type: 3}
+  _winSFX: {fileID: 8300000, guid: 480c5316c4b6a2a4691e3dd95038cd9f, type: 3}
   _explosionPosition: {fileID: 113245769245516401}
   _killScore: 25000
   _comboScore: 5
@@ -410,24 +411,19 @@ MonoBehaviour:
   - {fileID: 909806142679359977}
   - {fileID: 7447687405667548550}
   - {fileID: 7667026978746365094}
+  _stage1Parent: {fileID: 7718363083180639240}
   _stage1Parts:
-  - {fileID: 2717546033668801552}
-  - {fileID: 6570931691807993812}
-  - {fileID: 2736495013186966108}
-  - {fileID: 1752443260214435277}
-  - {fileID: 6076972153817429214}
-  - {fileID: 2094815155489014930}
-  - {fileID: 307595687317591159}
-  - {fileID: 5955694503221288394}
-  - {fileID: 3838063466970763984}
-  - {fileID: 285376793820430103}
-  - {fileID: 4573387003888377555}
-  - {fileID: 7723160333692405925}
-  - {fileID: 6088403460920594186}
-  - {fileID: 2934557584356472617}
-  - {fileID: 1572621834497925702}
-  - {fileID: 1638498280758933440}
-  - {fileID: 6412823046372401758}
+  - {fileID: 1054325805744568813}
+  - {fileID: 1055181930021096609}
+  - {fileID: 1055113336935145991}
+  - {fileID: 1054588246745648723}
+  - {fileID: 1054918231635477001}
+  - {fileID: 1054182356785406537}
+  - {fileID: 1053905476551228507}
+  - {fileID: 1054871021233281573}
+  - {fileID: 1054509180076540467}
+  - {fileID: 1054275694566718875}
+  - {fileID: 1055111953068675747}
   _stage2Parts:
   - {fileID: 7447687405667548550}
   - {fileID: 7667026978746365094}
@@ -442,7 +438,6 @@ GameObject:
   - component: {fileID: 1060232284500671025}
   - component: {fileID: 1067549210929316909}
   - component: {fileID: 1077505106093661401}
-  - component: {fileID: 307595687317591159}
   m_Layer: 0
   m_Name: GalacticLeopard_TurretBase
   m_TagString: Untagged
@@ -514,21 +509,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &307595687317591159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053905476551228507}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054136944246123395
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +649,6 @@ GameObject:
   - component: {fileID: 1060580557385569001}
   - component: {fileID: 1068082112564320985}
   - component: {fileID: 1078046393386298693}
-  - component: {fileID: 2094815155489014930}
   m_Layer: 0
   m_Name: GalacticLeopard_BasePart6 (1)
   m_TagString: Untagged
@@ -742,21 +721,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2094815155489014930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054182356785406537}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054183015630757291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1169,6 @@ GameObject:
   - component: {fileID: 1060043134504196695}
   - component: {fileID: 1067391649747192819}
   - component: {fileID: 1076926251730828069}
-  - component: {fileID: 285376793820430103}
   m_Layer: 0
   m_Name: GalacticLeopard_TurretBase 2
   m_TagString: Untagged
@@ -1277,21 +1240,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &285376793820430103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054275694566718875}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054277163018938219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1721,6 @@ MonoBehaviour:
   _weaponsActiveAtStart: 0
   _missileLaunchers: []
   _turrets: []
-  _nextHealthParts: []
 --- !u!114 &7434319323099877230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,7 +1839,6 @@ GameObject:
   - component: {fileID: 1077591045229277601}
   - component: {fileID: 191803259550367304}
   - component: {fileID: 909806142679359977}
-  - component: {fileID: 2717546033668801552}
   - component: {fileID: 7698318041868618376}
   m_Layer: 3
   m_Name: GalacticLeopard_Health_Part 1
@@ -2008,22 +1954,6 @@ MonoBehaviour:
   - {fileID: 5274081696974005029}
   - {fileID: 106995320063262613}
   - {fileID: 8745352419964138244}
-  _nextHealthParts: []
---- !u!114 &2717546033668801552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054325805744568813}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!114 &7698318041868618376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,7 +2740,6 @@ MonoBehaviour:
   - {fileID: 1504017185}
   - {fileID: 228692459}
   _turrets: []
-  _nextHealthParts: []
 --- !u!114 &4180462212196315910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,7 +3154,6 @@ GameObject:
   - component: {fileID: 1060226568320558859}
   - component: {fileID: 1068177311274759495}
   - component: {fileID: 1077743886827570195}
-  - component: {fileID: 3838063466970763984}
   m_Layer: 0
   m_Name: GalacticLeopard_TurretBase 1
   m_TagString: Untagged
@@ -3297,21 +3225,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3838063466970763984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054509180076540467}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054519210233761819
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,7 +3877,6 @@ GameObject:
   - component: {fileID: 1056269656625948375}
   - component: {fileID: 1067371483640863285}
   - component: {fileID: 1078013636469321897}
-  - component: {fileID: 1752443260214435277}
   m_Layer: 0
   m_Name: GalacticLeopard_BasePart6
   m_TagString: Untagged
@@ -4037,21 +3949,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1752443260214435277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054588246745648723}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054591293219427181
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,7 +5296,6 @@ GameObject:
   - component: {fileID: 1056601281313391545}
   - component: {fileID: 1067428963549908339}
   - component: {fileID: 1077393783062937321}
-  - component: {fileID: 5955694503221288394}
   m_Layer: 0
   m_Name: GalacticLeopard_TurretBase 4
   m_TagString: Untagged
@@ -5471,21 +5367,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5955694503221288394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054871021233281573}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054873718364210603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,7 +5612,6 @@ GameObject:
   - component: {fileID: 1056235459777700925}
   - component: {fileID: 1067889008160785719}
   - component: {fileID: 1077927634226552873}
-  - component: {fileID: 6076972153817429214}
   m_Layer: 0
   m_Name: GalacticLeopard_BasePart5 (1)
   m_TagString: Untagged
@@ -5804,21 +5684,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6076972153817429214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054918231635477001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1054918918664059673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6017,7 +5882,6 @@ GameObject:
   - component: {fileID: 1056315729465256083}
   - component: {fileID: 1067549959744966309}
   - component: {fileID: 1078328232368357835}
-  - component: {fileID: 2736495013186966108}
   m_Layer: 0
   m_Name: GalacticLeopard_BasePart5
   m_TagString: Untagged
@@ -6090,21 +5954,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2736495013186966108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055113336935145991}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1055114425906549439
 GameObject:
   m_ObjectHideFlags: 0
@@ -6403,7 +6252,6 @@ GameObject:
   - component: {fileID: 1060088883089985841}
   - component: {fileID: 1071617168358057493}
   - component: {fileID: 1077275835588504477}
-  - component: {fileID: 6570931691807993812}
   m_Layer: 0
   m_Name: GalacticLeopard_Wing
   m_TagString: Untagged
@@ -6476,21 +6324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6570931691807993812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055181930021096609}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e6e287d42011940a87339de596bad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 1.8
-  _explosionVFX: {fileID: 8792487859189900535, guid: cd93801df53c3b34385da28b9af18c66, type: 3}
-  _explosionSFX: {fileID: 0}
 --- !u!1 &1055204743097601641
 GameObject:
   m_ObjectHideFlags: 0
@@ -8153,14 +7986,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
---- !u!1 &491294034837665077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 133312, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
-  m_PrefabInstance: {fileID: 491294034837798389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &491294034837466231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 463234, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
+  m_PrefabInstance: {fileID: 491294034837798389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &491294034837665077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 133312, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
   m_PrefabInstance: {fileID: 491294034837798389}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &525741637326468286
@@ -8228,14 +8061,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
---- !u!1 &525741637326601342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 133312, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
-  m_PrefabInstance: {fileID: 525741637326468286}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &525741637326791996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 463234, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
+  m_PrefabInstance: {fileID: 525741637326468286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &525741637326601342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 133312, guid: 5beb4d460c39f14449ffdc14da4c4522, type: 3}
   m_PrefabInstance: {fileID: 525741637326468286}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &895691933077191114

@@ -9,6 +9,7 @@ public class LevelCheckpointManager : MonoBehaviour
 
     private bool _canRespawn;
     private Vector3 _respawnPosition;
+    private LevelCheckpointManager[] _allCheckPoints;
 
     public bool CanRespawn => _canRespawn;
     public Vector3 RespawnPos => _respawnPosition;
@@ -17,15 +18,31 @@ public class LevelCheckpointManager : MonoBehaviour
     private void Start()
     {
         _canRespawn = false;
+        _allCheckPoints = FindObjectsOfType<LevelCheckpointManager>();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _canRespawn = true;
+            this._canRespawn = true;
             _playerTimeLine.ScreenShotTime();
-            _respawnPosition = _playerRig.position;
+            this._respawnPosition = _playerRig.position;
+
+            for (int i = 0; i < _allCheckPoints.Length; i++)
+            {
+                if (_allCheckPoints[i] == this) continue;
+                else
+                {
+                    if (_allCheckPoints[i]._canRespawn)
+                    {
+                        _allCheckPoints[i]._canRespawn = false;
+                    }
+                }
+            }
         }
     }
+
+
 }

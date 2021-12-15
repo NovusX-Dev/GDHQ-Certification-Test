@@ -10,12 +10,24 @@ public class BossTrigger : MonoBehaviour
     [SerializeField] bool _activation; //used if the receiver needs a bool to activate
     [SerializeField] int _id;
 
+    Collider _collider;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
             OnPlayerNearBoss?.Invoke(_activation, _id);
-            GetComponent<Collider>().enabled = false;
+            _collider.enabled = false;
         }
+    }
+
+    public void ResetTrigger()
+    {
+        _collider.enabled = true;
     }
 }

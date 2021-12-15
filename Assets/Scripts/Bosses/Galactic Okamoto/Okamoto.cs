@@ -139,7 +139,7 @@ public class Okamoto : MonoBehaviour
         ScoreManager.Instance.IncreaseKillScore(_killScore);
         ScoreManager.Instance.IncreaseCombo(_comboScore);
 
-        GameObject.FindGameObjectWithTag("Player_Timeline").GetComponent<PlayerTimelineManager>().ResumeTimeline();
+        GameObject.FindGameObjectWithTag("Player_Timeline").GetComponent<PlayerTimelineManager>().ResumeTimeline(3f);
         Destroy(gameObject);
     }
 }
